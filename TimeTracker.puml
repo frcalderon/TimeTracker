@@ -103,5 +103,6 @@ Clock --|> Observable
 Printer -up-|> Visitor
 Interval -up-|> Observer
 Observable *-->"n" Observer
+Visitor -[hidden]left- Observable
 
 @enduml
