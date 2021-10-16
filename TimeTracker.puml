@@ -1,5 +1,8 @@
 @startuml
 
+class Client {
+}
+
 class Project {}
 
 class Task {}
@@ -8,9 +11,15 @@ class Activity {}
 
 class Interval {}
 
-interface Visitor {}
+Interface Visitor {
++ visitTask()
++ visitProject()
+}
 
-
+class searchTree {
++ visitTask()
++ visitProject()
+}
 
 interface Observer {}
 
@@ -20,15 +29,17 @@ class Clock {}
 
 class Printer {}
 
+Client o-down->"n" Activity
 Project -up-|> Activity
-Project *-up-> Activity
+Activity "n"<-down-o Project
 Task -up-|> Activity
 Task -[hidden]right- Project
-Interval "n" *-right- "1" Task
-Clock ..> Observable
-Printer ..> Observer
+Interval "n" -right-* Task
+Clock --|> Observable
 Printer --|> Visitor
 Interval -up-|> Observer
-Observable "1"-->"*" Observer
+Observable *-->"n" Observer
+Client -up-> Printer
+searchTree .up.|> Visitor
 
 @enduml
