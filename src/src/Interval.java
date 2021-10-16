@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Observable;
 
 public class Interval implements java.util.Observer{
@@ -15,7 +16,7 @@ public class Interval implements java.util.Observer{
     }
 
     public void endInterval() {
-        this.endTime = this.startTime + this.duration;
+        this.endTime = this.startTime.plus(this.duration.getSeconds(), ChronoUnit.SECONDS);
     }
 
     public void accept(Visitor visitor) {
@@ -32,6 +33,8 @@ public class Interval implements java.util.Observer{
 
     @Override
     public void update(Observable o, Object arg) {
+        this.currentTime = (LocalDateTime) arg;
+        this.duration = Duration.between(this.startTime, this.currentTime);
 
     }
 

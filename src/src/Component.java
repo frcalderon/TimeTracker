@@ -22,5 +22,11 @@ public abstract class Component {
         return this.parent;
     }
 
-    public abstract void start();
+    public void acceptVisitor(Visitor visitor){
+
+    }
+
+    public void start(){
+        //TODO
+    }
 }

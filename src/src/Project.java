@@ -22,7 +22,10 @@ public class Project extends Component {
         this.components.remove(child);
     }
 
-    public void acceptVisitor(Visitor v) {
-        //TODO;
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitProject(this);
+        for(Component component : this.components){
+            component.acceptVisitor(visitor);
+        }
     }
 }
