@@ -1,1 +1,18 @@
-Implementation: 
+Implementació:
+En primer lloc, cal remarcar que hem fet servir el mateix disseny de classes que per la pràctica, ja que portàvem diverses setmanes polint-lo i millorant-lo.
+
+La base del disseny és el patró Composite, que hem implementat a la classe Component amb les seves dues subclasses Project i Task. Ens podem imaginar l'estructura
+de Composite com un arbre de projectes, tasques (i intervals dins de les tasques). Tots els objectes de l'arbre són objectes abstractes Component. El primer objecte,
+anomenat root (arrel), és un projecte, que és una subclasse de Component que pot tenir fills. En canvi, la subclasse Task no pot tenir fills, sempre serà una fulla.
+
+L'objecte root tindrà fills, que podran ser tasques (fulles) o projectes, que tindran més fills. D'aquesta manera, el Time Tracker és un arbre de tasques i projectes,
+i les tasques tenen una llista d'Intervals, que són les unitats més petites de temps. Tenen una LocalDateTime d'inici i una de final. Els intervals també van guardant
+la duració per poder propagar-la per l'arbre mentre l'interval segueixi en curs. Els intervals es comencen i s'acaben quan s'executa un play/pause.
+
+Per gestionar el temps, tenim un objecte que implemente un Observable anomenat Clock. El Clock té una tasca que es va executant periòdicament (cada 1 segon) amb un timer,
+de manera que cada 1 segon li passa als seus observers l'hora actual. Intervals són els objectes que implementen els observers, de manera que cada vegada que Clock envia
+el senyal amb l'hora actual, l'interval actualitza la seva duració i, a continuació, propaga aquesta informació per l'arbre.
+
+Finalment, cal remarcar la classe Printer que implementa un Visitor, el qual és un altre patró de disseny. Aquesta classe recorre l'arbre, visitant-lo i interactua amb
+els objectes de l'arbre, mitjançant les funcions AcceptVisitor, que es troben a Project i a Task. Aquestes funcions simplement imprimeixen les dades dels objectes, com el seu nom,
+el seu objecte pare, la data d'inici i de finalització, i la duració.
