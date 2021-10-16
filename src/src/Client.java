@@ -6,7 +6,7 @@ public class Client {
         // create and start the clock
         //...
 
-        // make a small tree of projects and tasks
+        // make a small tree of projects and taskspro
         Project root = new Project("root", null);
         Project p1 = new Project("P1", root);
         Project p2 = new Project("P2", root);

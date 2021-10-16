@@ -5,8 +5,8 @@ public class Task extends Component{
     private ArrayList<Interval> intervals;
 
     // ----- CONSTRUCTOR -----
-    public Task(String name, String description, Component parent) {
-        super(name, description, parent);
+    public Task(String name, Component parent) {
+        super(name, parent);
     }
 
     // ----- METHODS -----
