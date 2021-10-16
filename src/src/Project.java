@@ -5,8 +5,8 @@ public class Project extends Component {
     private ArrayList<Component> components;
 
     // ----- CONSTRUCTOR -----
-    public Project(String name, String description, Component parent) {
-        super(name, description, parent);
+    public Project(String name, Component parent) {
+        super(name, parent);
     }
 
     // ----- METHODS -----

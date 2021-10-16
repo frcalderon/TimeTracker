@@ -8,18 +8,28 @@ public class Clock extends java.util.Observable{
     private Long tick; //Precision in seconds
     private TimerTask timerTask;
     private Timer timer;
+    private static Clock uniqueInstance;
 
-    public void Clock() {
+    private Clock() {
         this.tick = 2000L;
         this.timer = new Timer("Timer");
         this.timerTask = new TimerTask() {
             @Override
             public void run() {
-                notifyObservers(LocalDateTime.now());
+                tick();
             }
         };
         timer.schedule(this.timerTask, this.tick);
     }
 
-    //TODO Singleton implementation
+    //Singleton implementation
+    public Clock getInstance() {
+        if (uniqueInstance == null) {uniqueInstance = new Clock();}
+        return uniqueInstance;
+    }
+
+    private void tick() {
+        setChanged();
+        notifyObservers(LocalDateTime.now());
+    }
 }

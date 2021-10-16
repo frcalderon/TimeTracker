@@ -3,14 +3,12 @@ import java.time.Duration;
 public abstract class Component {
     // ----- ATTRIBUTES -----
     private String name;
-    private String description;
     private Component parent;
     private Duration componentDuration;
 
     // ----- CONSTRUCTOR -----
-    public Component(String name, String description, Component parent) {
+    public Component(String name, Component parent) {
         this.name = name;
-        this.description = description;
         this.parent = parent;
     }
 
@@ -24,4 +22,5 @@ public abstract class Component {
         return this.parent;
     }
 
+    public abstract void start();
 }
