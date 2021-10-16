@@ -23,4 +23,5 @@ public abstract class Component {
     public Component getParent() {
         return this.parent;
     }
+
 }
