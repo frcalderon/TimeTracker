@@ -4,26 +4,31 @@ class Project {}
 
 class Task {}
 
-class Component {}
+class Activity {}
 
 class Interval {}
 
-class Visitor {}
+interface Visitor {}
 
-class Observer {}
 
-class Observable {}
+
+interface Observer {}
+
+abstract class Observable {}
 
 class Clock {}
 
 class Printer {}
 
-Project --|> Component
-Project *--> Component
-Task --|> Component
-Interval "n" *-- "1" Task
+Project -up-|> Activity
+Project *-up-> Activity
+Task -up-|> Activity
+Task -[hidden]right- Project
+Interval "n" *-right- "1" Task
 Clock ..> Observable
 Printer ..> Observer
 Printer --|> Visitor
+Interval -up-|> Observer
+Observable "1"-->"*" Observer
 
 @enduml
