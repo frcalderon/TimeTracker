@@ -53,8 +53,8 @@ public abstract class Component {
         String parentName;
         if (this.parent == null) parentName = null;
         else parentName = this.parent.getName();
-        return String.format("%-10s %-10s child of %-10s %-25s %-25s %-5d", this.getClass().getSimpleName(),
-                this.name, parentName, Utils.formatTime(this.startTime),
-                Utils.formatTime(this.endTime), this.duration.toMillis());
+        return String.format("%-10s %-10s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(),
+                this.name, parentName, this.startTime,
+                this.endTime, Utils.roundDuration(this.duration));
     }
 }

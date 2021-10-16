@@ -43,8 +43,8 @@ public class Interval implements java.util.Observer{
 
     @Override
     public String toString() {
-        return String.format("%-21s child of %-10s %-25s %-25s %-5d", this.getClass().getSimpleName(), this.task.getName(),
-                Utils.formatTime(this.startTime), Utils.formatTime(this.endTime), this.duration.toMillis());
+        return String.format("%-21s child of %-10s %-30s %-30s %-5d", this.getClass().getSimpleName(), this.task.getName(),
+                this.startTime, this.endTime, Utils.roundDuration(this.duration));
     }
 
     public void acceptVisitor(Visitor visitor) {
