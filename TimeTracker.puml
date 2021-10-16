@@ -16,18 +16,16 @@ Interface Visitor {
 + visitProject()
 }
 
-class searchTree {
-+ visitTask()
-+ visitProject()
-}
-
 interface Observer {}
 
 abstract class Observable {}
 
 class Clock {}
 
-class Printer {}
+class Printer {
++ visitTask()
++ visitProject()
+}
 
 Client o-down->"n" Component
 Project -up-|> Component
@@ -36,10 +34,8 @@ Task -up-|> Component
 Task -[hidden]right- Project
 Interval "n" -right-* Task
 Clock --|> Observable
-Printer --|> Visitor
+Printer -up-|> Visitor
 Interval -up-|> Observer
 Observable *-->"n" Observer
-Client -up-> Printer
-searchTree .up.|> Visitor
 
 @enduml
