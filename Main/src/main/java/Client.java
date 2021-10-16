@@ -17,7 +17,7 @@ public class Client {
         Task t3 = new Task("T3", p2);
 
         // make the printer
-        Printer printer = new Printer(root);
+        Printer printer = Printer.getInstance(root);
 
         // the printer will periodically print the whole tree
         // from now on
@@ -29,6 +29,9 @@ public class Client {
         Thread.sleep(4000);
         t2.playTask();
         Thread.sleep(2000);
+        t1.pauseTask();
+        Thread.sleep(2000);
+        t2.pauseTask();
 
         // optionally, stop the clock
         // ...

@@ -19,7 +19,7 @@ public class Clock extends java.util.Observable{
                 tick();
             }
         };
-        timer.schedule(this.timerTask, this.tick);
+        timer.scheduleAtFixedRate(this.timerTask, 0, 1000);
     }
 
     //Singleton implementation

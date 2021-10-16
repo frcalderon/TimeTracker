@@ -8,6 +8,16 @@ public class Project extends Component {
     // ----- CONSTRUCTOR -----
     public Project(String name, Component parent) {
         super(name, parent);
+        this.components = new ArrayList<Component>();
+    }
+
+    @Override
+    public void componentDuration() {
+        Duration projectDuration = Duration.ZERO;
+        for (Component component : this.components) {
+            projectDuration = projectDuration.plus(component.getDuration());
+        }
+        this.setDuration(projectDuration);
     }
 
     // ----- METHODS -----
@@ -30,10 +40,4 @@ public class Project extends Component {
         }
     }
 
-    @Override
-    public void computeDuration() {
-        for (Component component : this.components) {
-            setDuration(getDuration().plus(component.getDuration()));
-        }
-    }
 }
