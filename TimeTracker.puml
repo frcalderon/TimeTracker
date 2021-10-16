@@ -1,26 +1,92 @@
 @startuml
 
 class Client {
++ main()
 }
 
-class Project {}
+class Project {
+- components : Component[]
++ Project(String name, Component parent)
 
-class Task {}
++ getChildren()
++ addChild(Component child)
++ removeChild(Component child)
++ acceptVisitor(Visitor v)
++ computeDuration()
+}
 
-class Component {}
+class Task {
+- intervals : Interval[]
++ Task(String name, Component parent)
++ playTask()
++ pauseTask()
++ acceptVisitor(Visitor v)
++ computeDuration()
+}
 
-class Interval {}
+class Component {
+- name : String
+- parent : Component
+- duration : Duration
+- startTime : LocalDateTime
+- endTime : LocalDateTime
+
++ Component(String name, Component parent)
++ getName()
++ getParent()
++ getDuration()
+
++ setStartTime()
++ setDuration()
++ setEndTime()
+
++ acceptVisitor()
++ computeDuration()
++ endComponent()
++ toString()
+}
+
+class Interval {
+- startTime : LocalDateTime
+- endTime : LocalDateTime
+- duration : Duration
+- task : Task
+
++ Interval(Task t)
++ endInterval()
++ getDuration()
++ update(Observable o, Object arg)
+
+}
 
 Interface Visitor {
 + visitTask()
 + visitProject()
 }
 
-interface Observer {}
 
-abstract class Observable {}
+package java.util <<Folder>> {
+    Interface Observer{
+    + update()
+    }
 
-class Clock {}
+    abstract class Observable {
+    - Observer: Observers[]
+    + addObserver()
+    + deleteObserver()
+    + notifyObserver()
+    }
+}
+
+class Clock {
+- tick : Long
+- timerTask : TimerTask
+- timer : Timer
+- uniqueInstance : Clock
+- Clock()
++ getInstance()
+- tick()
+}
 
 class Printer {
 + visitTask()
