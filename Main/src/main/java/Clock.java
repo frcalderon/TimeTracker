@@ -5,13 +5,11 @@ import java.util.TimerTask;
 
 public class Clock extends java.util.Observable{
 
-    private Long tick; //Precision in seconds
     private TimerTask timerTask;
     private Timer timer;
     private static Clock uniqueInstance;
 
     private Clock() {
-        this.tick = 1000L;
         this.timer = new Timer("Timer");
         this.timerTask = new TimerTask() {
             @Override

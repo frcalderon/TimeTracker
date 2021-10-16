@@ -40,7 +40,7 @@ public abstract class Component {
     public abstract void componentDuration();
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
-        if (this.parent != null) this.parent.setEndTime(this.endTime);
+        if (this.parent != null) this.parent.setEndTime(endTime);
     }
 
     public abstract void acceptVisitor(Visitor visitor);
@@ -55,6 +55,6 @@ public abstract class Component {
         else parentName = this.parent.getName();
         return String.format("%-10s %-10s child of %-10s %-25s %-25s %-5d", this.getClass().getSimpleName(),
                 this.name, parentName, Utils.formatTime(this.startTime),
-                Utils.formatTime(this.endTime), this.duration.toSeconds());
+                Utils.formatTime(this.endTime), this.duration.toMillis());
     }
 }

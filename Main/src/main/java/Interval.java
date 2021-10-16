@@ -12,13 +12,12 @@ public class Interval implements java.util.Observer{
 
     public Interval(Task task) {
         this.task = task;
-        this.startTime = LocalDateTime.now();
-        task.setStartTime(this.startTime);
+        if (task.getStartTime() == null) task.setStartTime(this.startTime);
         Clock.getInstance().addObserver(this);
     }
 
     public void endInterval() {
-        this.endTime = this.startTime.plus(this.duration.getSeconds(), ChronoUnit.SECONDS);
+        //this.endTime = this.startTime.plus(this.duration.getSeconds(), ChronoUnit.SECONDS);
         this.duration = Duration.between(this.startTime, this.endTime);
         this.task.setDuration(this.duration);
         this.task.setEndTime(this.endTime);
@@ -31,7 +30,12 @@ public class Interval implements java.util.Observer{
     @Override
     public void update(Observable o, Object arg) {
         LocalDateTime currentTime = (LocalDateTime) arg;
+        if (this.startTime == null) {
+            this.startTime = currentTime;
+            task.setStartTime(this.startTime);
+        }
         this.duration = Duration.between(this.startTime, currentTime);
+        this.endTime = currentTime;
         this.task.componentDuration();
         this.task.setEndTime(this.endTime);
         Printer.getInstance(null).print();
@@ -40,7 +44,7 @@ public class Interval implements java.util.Observer{
     @Override
     public String toString() {
         return String.format("%-21s child of %-10s %-25s %-25s %-5d", this.getClass().getSimpleName(), this.task.getName(),
-                Utils.formatTime(this.startTime), Utils.formatTime(this.endTime), this.duration.toSeconds());
+                Utils.formatTime(this.startTime), Utils.formatTime(this.endTime), this.duration.toMillis());
     }
 
     public void acceptVisitor(Visitor visitor) {
