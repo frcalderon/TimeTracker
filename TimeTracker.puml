@@ -7,7 +7,7 @@ class Project {}
 
 class Task {}
 
-class Activity {}
+class Component {}
 
 class Interval {}
 
@@ -29,10 +29,10 @@ class Clock {}
 
 class Printer {}
 
-Client o-down->"n" Activity
-Project -up-|> Activity
-Activity "n"<-down-o Project
-Task -up-|> Activity
+Client o-down->"n" Component
+Project -up-|> Component
+Component "n"<-down-o Project
+Task -up-|> Component
 Task -[hidden]right- Project
 Interval "n" -right-* Task
 Clock --|> Observable
