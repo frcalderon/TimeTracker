@@ -1,0 +1,29 @@
+@startuml
+
+class Project {}
+
+class Task {}
+
+class Component {}
+
+class Interval {}
+
+class Visitor {}
+
+class Observer {}
+
+class Observable {}
+
+class Clock {}
+
+class Printer {}
+
+Project --|> Component
+Project *--> Component
+Task --|> Component
+Interval "n" *-- "1" Task
+Clock ..> Observable
+Printer ..> Observer
+Printer --|> Visitor
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+
+class Client {}
+
+class Portfolio {}
+
+class CC {}
+
+class Moneda {}
+
+class Euro {}
+
+class Dolar {}
+
+class Yen {}
+
+class Franc {}
+
+class Lliure {}
+
+class ExchanceRate {}
+
+class Operacio {}
+
+class Buy {}
+
+class Exchange {}
+
+class Sell {}
+
+Client --* Portfolio
+Portfolio *--* Moneda
+Portfolio *--* CC
+
+Euro --|> Moneda
+Dolar --|> Moneda
+Yen --|> Moneda
+Franc --|> Moneda
+Lliure --|> Moneda
+
+Buy --|> Operacio
+Exchange --|> Operacio
+Sell --|> Operacio
+
+@enduml
